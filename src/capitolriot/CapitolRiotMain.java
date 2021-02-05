@@ -1,23 +1,44 @@
 package capitolriot;
-import org.knowm.xchart.CategoryChart;
-import org.knowm.xchart.QuickChart;
-import org.knowm.xchart.SwingWrapper;
-import org.knowm.xchart.XYChart;
-import org.knowm.xchart.XYChartBuilder;
-import org.knowm.xchart.XYSeries;
-import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
-import org.knowm.xchart.style.Styler.LegendPosition;
-import org.knowm.xchart.style.markers.SeriesMarkers;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class CapitolRiotMain {
 
 	public static void main(String[] args) {
 		
+		JSONArray data = readJson("SenScore_capitolbreach.json");
+		
+		//Example for reading tweet-data:
+        JSONObject tweet = (JSONObject) data.get(0);
+        System.out.println(tweet.get("content"));
+		
 	}
 	
-public void readJson(String path) {
 	
-	// TODO read data set in json format
-}
+	
+	
+	public static JSONArray readJson(String path) {
+		
+	    try {
+	        Object object = new JSONParser()
+	                .parse(new FileReader(path));
+	        
+	        JSONArray data = (JSONArray)object;
+
+	        return data;
+	        
+	    }
+	    catch(FileNotFoundException fe) {
+	        fe.printStackTrace();
+	    }
+	    catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
 
 }
