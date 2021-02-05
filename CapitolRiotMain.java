@@ -4,12 +4,15 @@ public class CapitolRiotMain {
 
 	public static void main(String[] args) {
 		
-		//Array: Days (as days)
+		double[] days;
+		double[] senScoreAverage;
+
 		
-		//Array: MeanTweets (double)
+		//create Arrays
+		
 		
 	
-		
+		//create Graph
 		
 		
 	}
