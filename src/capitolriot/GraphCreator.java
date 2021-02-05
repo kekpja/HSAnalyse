@@ -14,6 +14,7 @@ public class GraphCreator {
 	public String[] hashtags;
 	
 	public double[] avgSentimentDay() {
+		
 		return null;
 	}
 	
