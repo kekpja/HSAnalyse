@@ -19,10 +19,11 @@ public class GraphCreator {
 		new SwingWrapper(cat).displayChart();
 	}
 	
-	public void displayHashtagAverage() {
+	public void displayHashtagAverage(double[] dates, double[] sentScores) {
 		
 	}
 	
-	public void displayTweetsPerHashtag(int[] quantities){
+	public void displayTweetsPerHashtag(int[] dates, int[] tweetCounts){
+		
 	}
 }

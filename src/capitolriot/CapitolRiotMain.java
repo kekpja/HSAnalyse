@@ -34,10 +34,18 @@ public class CapitolRiotMain {
 
 	public static void main(String[] args) {
 		double[] dates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+		int[] intdates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 		GraphCreator graphy = new GraphCreator();
 		
-		//TODO: replace double[] with data array: average sentiment (all #) per day
+		//TODO: replace double[] with data: average sentiment (all #) per day
 		graphy.displayAverageSentiment(dates, new double[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
+		
+		//TODO: replce double[] with data: average sentiment (single #) per day
+		graphy.displayHashtagAverage(dates, new double[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
+		
+		//TODO: replace int[] with data: tweets per hashtag -> in area charts to show total tweet amount
+		graphy.displayTweetsPerHashtag(intdates, new int[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
+		
 		JSONArray data = AppIO.readJson("SenScore_capitolbreach.json");
 		
 		//Example for reading tweet-data:
