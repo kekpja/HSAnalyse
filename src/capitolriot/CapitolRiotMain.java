@@ -10,8 +10,7 @@ public class CapitolRiotMain {
 
 	public static void main(String[] args) {
 		
-		AppIO io = new AppIO();
-		JSONArray data = io.readJson("SenScore_capitolbreach.json");
+		JSONArray data = AppIO.readJson("SenScore_capitolbreach.json");
 		
 		//Example for reading tweet-data:
         JSONObject tweet = (JSONObject) data.get(0);
