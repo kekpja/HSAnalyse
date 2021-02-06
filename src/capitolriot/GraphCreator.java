@@ -25,7 +25,7 @@ public class GraphCreator {
 		//for every tweet
 			//extract date
 			//find position in array (-6)
-			//add to Sentiment Score at that position
+			//add to Sentiment Score (compound) at that position
 			//add 1 to count at that position
 		
 		//calculate average from scores: 
@@ -34,11 +34,13 @@ public class GraphCreator {
 		return null;
 	}
 	
-	public double[] avgSentimentHashtag() {
+	public double[] avgSentPerHashtagPerDay() {
+		//Sentiment Durchschnitt per Hashtag per day -> BubbleChart
 		return null;
 	}
 	
-	public int[] hashtagPerDay() {
+	public int[] tweetPerHashtagPerDay() {
+		//Anzahl Tweets pro Tag pro Hashtag (-> HeatmapChart)
 		return null;
 	}
 	
