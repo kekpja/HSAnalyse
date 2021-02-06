@@ -51,6 +51,10 @@ public class Preprocessor {
 		return avgSentimentPerDay;
 	}
 	
+	
+	
+	
+	
 	public double[] avgSentPerHashtagPerDay() {
 		//Sentiment Durchschnitt per Hashtag per day -> BubbleChart
 		return null;

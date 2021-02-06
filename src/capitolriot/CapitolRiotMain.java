@@ -35,15 +35,18 @@ public class CapitolRiotMain {
 	public static void main(String[] args) {
 		double[] dates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 		GraphCreator graphy = new GraphCreator();
+		Preprocessor prep = new Preprocessor();
 		
 		//TODO: replace double[] with data array: average sentiment (all #) per day
-		graphy.displayAverageSentiment(dates, new double[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
-		JSONArray data = AppIO.readJson("SenScore_capitolbreach.json");
+		double[] avgSentimentPerDay = prep.avgSentimentDay("SenScore_capitolbreach.json");
+		graphy.displayAverageSentiment(dates, avgSentimentPerDay);
 		
-		//Example for reading tweet-data:
+		
+		
+		/*Example for reading tweet-data:
         JSONObject tweet = (JSONObject) data.get(0);
         System.out.println(tweet.get("content"));
-        
+        */
         
         
         // All Chart examples
