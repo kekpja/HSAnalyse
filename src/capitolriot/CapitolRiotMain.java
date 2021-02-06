@@ -34,6 +34,15 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 
 public class CapitolRiotMain {
 
+	
+	//TODO replace with path to complete json-file ("SenScore_total.json")
+	static String path = "D:/ASM_Data/SenScore/SenScore_capitolbreach.json";
+	
+	//TODO replace with path to local directory containing files with SenScores
+	static String directoryPath = "D:/ASM_Data/SenScore";
+	
+	
+	
 	public static void main(String[] args) {
 		double[] dates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
 		int[] intdates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
@@ -70,25 +79,19 @@ public class CapitolRiotMain {
 		GraphCreator graphy = new GraphCreator();
 		Preprocessor pre = new Preprocessor();
 		AppIO io = new AppIO();
-		String path = "SenScore_capitolbreach.json";
+
 		
-		io.readJson(path);
 		double[] sents = pre.avgSentimentDay(path);
 		// displays average sentiments for all hashtags
 		graphy.displayAverageSentiment(dates, sents);
 		
+
+		singlesents = pre.avgSenPerHashtagPerDay(directoryPath);
 		// displays average sentiments for each hashtags
 		graphy.displayHashtagAverage(dates, singlesents);
 		
 		//TODO: replace int[] with data: tweets per hashtag -> in area charts to show total tweet amount
 		graphy.displayTweetsPerHashtag(intdates, tweetcounts);
-		
-		JSONArray data = AppIO.readJson("SenScore_capitolbreach.json");
-		
-		//Example for reading tweet-data:
-        JSONObject tweet = (JSONObject) data.get(0);
-        System.out.println(tweet.get("content"));
-        
         
         
         // All Chart examples
