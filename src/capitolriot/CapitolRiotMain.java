@@ -10,11 +10,14 @@ public class CapitolRiotMain {
 
 	public static void main(String[] args) {
 		
-		JSONArray data = AppIO.readJson("SenScore_capitolbreach.json");
+		Preprocessor pre = new Preprocessor();
+		pre.avgSentimentDay("SenScore_capitolbreach.json");
 		
-		//Example for reading tweet-data:
+		/*Example for reading tweet-data:
+		JSONArray data = AppIO.readJson("SenScore_capitolbreach.json");
         JSONObject tweet = (JSONObject) data.get(0);
         System.out.println(tweet.get("content"));
+        */
 		
 	}
 	
