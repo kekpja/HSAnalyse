@@ -46,8 +46,11 @@ public class Preprocessor {
 			System.out.println(avgSentimentPerDay[i]);
 			System.out.println();
 		}
-		
-		
+		for (int i = 0; i < avgSentimentPerDay.length; i++) {
+			System.out.println("sentiment"+avgSentimentPerDay[i]);
+			System.out.println("date"+dates[i]);
+		}
+
 		return avgSentimentPerDay;
 	}
 	

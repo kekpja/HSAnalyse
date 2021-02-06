@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,15 +35,33 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 public class CapitolRiotMain {
 
 	public static void main(String[] args) {
-		double[] dates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-		int[] intdates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+		double[] dates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
+		int[] intdates = {1, 2, 12, 7, 4, 5, 1, 13, 3, 15, 3, 4, 18, 43, 20, 5};
+		double[] sent1 = {42, 7, 8, 9, 5, 11, 12, 13, 14, 3, 16, 17, 18, 19, 20, 21};
+		double[] sent2 = {16, 7, 8, 9, 10, 1, 12, 13, 14, 15, 5, 17, 18, 19, 45, 21};
+		double[] sent3 = {6, 2, 8, 9, 10, 11, 12, 13, 2, 15, 16, 17, 18, 19, 20, 21};
+		double[] sent4 = {16, 7, 8, 9, 2, 11, 12, 5, 14, 15, 16, 17, 18, 19, 20, 21};
+		double[] sent5 = {6, 7, 8, 9, 10, 11, 12, 13, 14, 6, 16, 17, 18, 19, 20, 21};
+		double[] sent6 = {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 3, 20, 21};
+		List<double[]> singlesents = new ArrayList<double[]>();
+		singlesents.add(sent1);
+		singlesents.add(sent2);
+		singlesents.add(sent3);
+		singlesents.add(sent4);
+		singlesents.add(sent5);
+		singlesents.add(sent6);
 		GraphCreator graphy = new GraphCreator();
+		Preprocessor pre = new Preprocessor();
+		AppIO io = new AppIO();
+		String path = "SenScore_capitolbreach.json";
 		
+		io.readJson(path);
+		double[] sents = pre.avgSentimentDay(path);
 		//TODO: replace double[] with data: average sentiment (all #) per day
-		graphy.displayAverageSentiment(dates, new double[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
+		graphy.displayAverageSentiment(dates, sents);
 		
-		//TODO: replce double[] with data: average sentiment (single #) per day
-		graphy.displayHashtagAverage(dates, new double[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
+		//TODO: replace double[] with data: average sentiment (single #) per day
+		graphy.displayHashtagAverage(dates, singlesents);
 		
 		//TODO: replace int[] with data: tweets per hashtag -> in area charts to show total tweet amount
 		graphy.displayTweetsPerHashtag(intdates, new int[] {1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25});
@@ -63,23 +83,27 @@ public class CapitolRiotMain {
 		
 
 		// XYSeries
-		chart.addSeries("a", new double[] { 12, 30, 15, 0.7, 19 }, new double[] { 4, -5, 19, 6, 0.5 });
-		XYSeries series = chart.addSeries("Gaussian Blob 2", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
-		series.setMarker(SeriesMarkers.DIAMOND);
-		
+		chart.addSeries("#capitolriot", dates, sent1);
+		chart.addSeries("#capitolriots", dates, sent2);
+		chart.addSeries("#CoupAttempt", dates, sent3);
+		chart.addSeries("#TrumpCoupAttempt", dates, sent4);
+		chart.addSeries("#capitolbreach", dates, sent5);
+		chart.addSeries("#AnatomyOfCapitolAttack", dates, sent6);
 		// Cat Series
 		cat.addSeries("#capitolriot", new double[] { 1, 2, 3, 4}, new double[] { 0.3, -0.9, 0.9, -0.1});
-		
 		// Bub Series
 		bub.addSeries("Hashtags", new double[] { 1, 2, 3, 4}, new double[] { 0.3, -0.9, 0.9, -0.1}, new double[] { 0.7, 4, 4, 15});
-		
 		// Heat Series
 		heat.addSeries("Heat", new int[] {1, 2, 3, 4, 5}, new int[] {1, 2, 3}, new int[][] {{2, 4, 5}, {1, 2, 7}, {0, 5, 0}, {2, 4, 7}, {2, 15, 8}});
-
 		// Pie Series
 		pie.addSeries("#capitolriot", 10000);
 		pie.addSeries("#trumpcoup", 12000);
 		pie.addSeries("#blm", 5000);
+		//new SwingWrapper(cat).displayChart();
+		new SwingWrapper(chart).displayChart();
+		//new SwingWrapper(bub).displayChart();
+		//new SwingWrapper(heat).displayChart();
+		//new SwingWrapper(pie).displayChart();
 
 	
 		// XYChart AREA CHART

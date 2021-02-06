@@ -1,5 +1,7 @@
 package capitolriot;
 
+import java.util.List;
+
 import org.json.simple.JSONArray;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
@@ -19,8 +21,16 @@ public class GraphCreator {
 		new SwingWrapper(cat).displayChart();
 	}
 	
-	public void displayHashtagAverage(double[] dates, double[] sentScores) {
-		
+	public void displayHashtagAverage(double[] dates, List<double[]>sentScores) {
+		// XYSeries
+		XYChart chart = new XYChartBuilder().width(600).height(500).title("average Sentiment per day (by #)").yAxisTitle("Time").yAxisTitle("Sentiment").build();
+		chart.addSeries("#capitolriot", dates, sentScores.get(0));
+		chart.addSeries("#capitolriots", dates, sentScores.get(1));
+		chart.addSeries("#CoupAttempt", dates, sentScores.get(2));
+		chart.addSeries("#TrumpCoupAttempt", dates, sentScores.get(3));
+		chart.addSeries("#capitolbreach", dates, sentScores.get(4));
+		chart.addSeries("#AnatomyOfCapitolAttack", dates, sentScores.get(5));
+		new SwingWrapper(chart).displayChart();
 	}
 	
 	public void displayTweetsPerHashtag(int[] dates, int[] tweetCounts){
