@@ -1,6 +1,8 @@
 package capitolriot;
 
 import org.json.simple.JSONArray;
+import org.knowm.xchart.CategoryChart;
+import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -11,39 +13,16 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 
 public class GraphCreator {
 	
-	public void displaySentimentChart(double[] sentScores){
-		// Create Chart
-				XYChart chart = new XYChartBuilder().width(600).height(500).title("Gaussian Blobs").xAxisTitle("X").yAxisTitle("Y").build();
-
-				// Customize Chart
-				chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Scatter);
-				chart.getStyler().setChartTitleVisible(false);
-				chart.getStyler().setLegendPosition(LegendPosition.InsideSW);
-				chart.getStyler().setMarkerSize(16);
-
-				// Series
-				chart.addSeries("a", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
-				XYSeries series = chart.addSeries("Gaussian Blob 2", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
-				series.setMarker(SeriesMarkers.DIAMOND);
-
-				new SwingWrapper(chart).displayChart();
+	public void displayAverageSentiment(double[] dates, double[] sentScores){
+		CategoryChart cat = new CategoryChartBuilder().width(600).height(500).title("Average Sentiment (all #)").xAxisTitle("Day").yAxisTitle("Sentiment").build();
+		cat.addSeries("global average", dates, sentScores);
+		new SwingWrapper(cat).displayChart();
 	}
 	
-	public void displayQuantityChart(int[] quantities){
-		// Create Chart
-				XYChart chart = new XYChartBuilder().width(600).height(500).title("Gaussian Blobs").xAxisTitle("X").yAxisTitle("Y").build();
-
-				// Customize Chart
-				chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Scatter);
-				chart.getStyler().setChartTitleVisible(false);
-				chart.getStyler().setLegendPosition(LegendPosition.InsideSW);
-				chart.getStyler().setMarkerSize(16);
-
-				// Series
-				chart.addSeries("a", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
-				XYSeries series = chart.addSeries("Gaussian Blob 2", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
-				series.setMarker(SeriesMarkers.DIAMOND);
-
-				new SwingWrapper(chart).displayChart();
+	public void displayHashtagAverage() {
+		
+	}
+	
+	public void displayTweetsPerHashtag(int[] quantities){
 	}
 }
