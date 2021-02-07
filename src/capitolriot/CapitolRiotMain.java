@@ -40,19 +40,19 @@ public class CapitolRiotMain {
 		//graphy.displayTweetsPerHashtag(intdates, tweetcounts);
 		
 		
-		
+		//TODO eine Methode nach der anderen laufen lassen und dann Ergebnisse aus der Konsole in ein Textfeld kopieren
 		RangeAnalyzer ra = new RangeAnalyzer();
 		System.out.println("MOST LIKED TWEETS:");
 		ra.printContentOfMostLikedTweets(10, path);
 		
-		System.out.println("MOST RETWEETED TWEETS:");
-		ra.printContentOfMostRetweetedTweets(10, path);
+		//System.out.println("MOST RETWEETED TWEETS:");
+		//ra.printContentOfMostRetweetedTweets(10, path);
 		
-		System.out.println("Frequency Map (LikeCount):");
-		ra.printFrequencyMapLikes(1000, path);
+		//System.out.println("Frequency Map (LikeCount):");
+		//ra.printFrequencyMapLikes(1000, path);
 		
-		System.out.println("Frequency Map (RetweetCount):");
-		ra.printFrequencyMapLikes(1000, path);
+		//System.out.println("Frequency Map (RetweetCount):");
+		//ra.printFrequencyMapLikes(1000, path);
 		
 
 	}
