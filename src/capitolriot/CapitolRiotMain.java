@@ -5,7 +5,7 @@ import java.util.List;
 public class CapitolRiotMain {
 
 	// TODO replace with path to complete json-file ("SenScore_total.json")
-	static String path = "C:\\Users\\solemn\\Documents\\UNI\\JAVA\\wise2021\\SenScore_total.json";
+	static String path = "D:/ASM_Data/SenScore/SenScore_capitolbreach.json";
 
 	// TODO replace with path to local directory containing files with SenScores
 	static String directoryPath = "D:/ASM_Data/SenScore";
@@ -25,19 +25,35 @@ public class CapitolRiotMain {
 				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
 				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, };
 		//display HeatMap (tweetcount for all hashtags)
-		graphy.displayHeatMap(intdates, pre.tweetPerHashtagPerDayArray(directoryPath));
+		//graphy.displayHeatMap(intdates, pre.tweetPerHashtagPerDayArray(directoryPath));
 
 		// display average sentiments for all hashtags
-		double[] sents = pre.avgSentimentDay(path);
-		graphy.displayAverageSentiment(dates, sents);
+		//double[] sents = pre.avgSentimentDay(path);
+		//graphy.displayAverageSentiment(dates, sents);
 
 		// display average sentiments for each hashtag
-		singlesents = pre.avgSenPerHashtagPerDay(directoryPath);
-		graphy.displayHashtagAverage(dates, singlesents);
+		//singlesents = pre.avgSenPerHashtagPerDay(directoryPath);
+		//graphy.displayHashtagAverage(dates, singlesents);
 
 		// displays tweetcount for each day for one hashtag
-		tweetcounts = pre.tweetPerHashtagPerDay(directoryPath);
-		graphy.displayTweetsPerHashtag(intdates, tweetcounts);
+		//tweetcounts = pre.tweetPerHashtagPerDay(directoryPath);
+		//graphy.displayTweetsPerHashtag(intdates, tweetcounts);
+		
+		
+		
+		RangeAnalyzer ra = new RangeAnalyzer();
+		System.out.println("MOST LIKED TWEETS:");
+		ra.printContentOfMostLikedTweets(10, path);
+		
+		System.out.println("MOST RETWEETED TWEETS:");
+		ra.printContentOfMostRetweetedTweets(10, path);
+		
+		System.out.println("Frequency Map (LikeCount):");
+		ra.printFrequencyMapLikes(1000, path);
+		
+		System.out.println("Frequency Map (RetweetCount):");
+		ra.printFrequencyMapLikes(1000, path);
+		
 
 	}
 

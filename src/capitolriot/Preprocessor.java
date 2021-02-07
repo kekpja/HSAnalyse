@@ -149,8 +149,6 @@ public class Preprocessor {
 		for (int[] i : scores) Arrays.toString(i);
 			//for (int j : i) System.out.println(j);
 		
-		
-
 		return scores;
 	}
 	
