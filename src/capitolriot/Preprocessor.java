@@ -116,19 +116,18 @@ public class Preprocessor {
 	
 	public int[][] tweetPerHashtagPerDayArray(String directoryPath) {
 		/**Calculates number of tweets per hashtag per day. 
-		 * Returns a list of int arrays, each array for one hashtag, every int for an amount.
+		 * Returns an array of int arrays, each array for one day, every int for an amount of tweets.
 		 * Receives path of directory containing the files to analyze.
 		 */
 		
-		int[][] scores = new int[6][dates.length];
+		int[][] scores = new int[dates.length][6];
 		File directory = new File(directoryPath);
+		int fileCounter = 0;
 		
 		//run avgSentimentScore for every file in directory and store in list
 		for (File JSONfile : directory.listFiles()) {
-			System.out.println();
-			
-			int[] count = new int[dates.length];
-			int counter = 0;
+			System.out.println(JSONfile.getAbsolutePath());
+
 			JSONArray data = AppIO.readJson(JSONfile.getAbsolutePath());
 			
 			//for every tweet
@@ -140,16 +139,16 @@ public class Preprocessor {
 				int date = Integer.parseInt(dateString);
 
 				//count number of tweets
-				count[date-6] += 1;
+				scores[date-6][fileCounter] += 1;
 			}
-			scores[counter] = count;
-			counter +=1;
+			
+			fileCounter++;
 		}	
 		
-		
 		//print results
-		for (int[] i : scores) 
-			for (int j : i) System.out.println(j);
+		for (int[] i : scores) Arrays.toString(i);
+			//for (int j : i) System.out.println(j);
+		
 		
 
 		return scores;
