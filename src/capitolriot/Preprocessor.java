@@ -13,8 +13,6 @@ public class Preprocessor {
 	int[] dates = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
 	String[] hashtags = {"capitolriot", "capitolriots", "CoupAttempt", "TrumpCoupAttempt", "capitolbreach", "AnatomyOfCapitolAttack"};
 	
-	
-	
 	public double[] avgSentimentDay(String path) {
 	/** calculates average sentiment per day for the file in this path. Returns array of Sentiment Scores 	
 		as doubles. First Entry is the score for  sixth of January (06.01.2021) **/
@@ -56,10 +54,6 @@ public class Preprocessor {
 		return avgSentimentPerDay;
 	}
 	
-	
-	
-	
-	
 	public List<double[]> avgSenPerHashtagPerDay(String directoryPath) {
 		/** Average sentiment per hashtag per day. Returns List of 6 double arrays,
 		 * each array the scores for one hashtag, each double the score for one day.
@@ -79,11 +73,6 @@ public class Preprocessor {
 		
 		return scores;
 	}
-	
-	
-	
-	
-	
 	
 	public List<int[]> tweetPerHashtagPerDay(String directoryPath) {
 		/**Calculates number of tweets per hashtag per day. 
@@ -122,6 +111,50 @@ public class Preprocessor {
 
 		return scores;
 	}
+	
+	
+	
+	public int[][] tweetPerHashtagPerDayArray(String directoryPath) {
+		/**Calculates number of tweets per hashtag per day. 
+		 * Returns a list of int arrays, each array for one hashtag, every int for an amount.
+		 * Receives path of directory containing the files to analyze.
+		 */
+		
+		int[][] scores = new int[6][dates.length];
+		File directory = new File(directoryPath);
+		
+		//run avgSentimentScore for every file in directory and store in list
+		for (File JSONfile : directory.listFiles()) {
+			System.out.println();
+			
+			int[] count = new int[dates.length];
+			int counter = 0;
+			JSONArray data = AppIO.readJson(JSONfile.getAbsolutePath());
+			
+			//for every tweet
+			for (Object x : data) {
+				JSONObject tweet = (JSONObject) x;
+				
+				//extract date
+				String dateString = tweet.get("date").toString().substring(8,10);
+				int date = Integer.parseInt(dateString);
+
+				//count number of tweets
+				count[date-6] += 1;
+			}
+			scores[counter] = count;
+			counter +=1;
+		}	
+		
+		
+		//print results
+		for (int[] i : scores) 
+			for (int j : i) System.out.println(j);
+		
+
+		return scores;
+	}
+	
 	
 	
 	

@@ -1,10 +1,19 @@
 package capitolriot;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.simple.JSONArray;
+import org.knowm.xchart.BitmapEncoder;
+import org.knowm.xchart.BitmapEncoder.BitmapFormat;
+import org.knowm.xchart.BubbleChart;
+import org.knowm.xchart.BubbleChartBuilder;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
+import org.knowm.xchart.HeatMapChart;
+import org.knowm.xchart.HeatMapChartBuilder;
+import org.knowm.xchart.PieChart;
+import org.knowm.xchart.PieChartBuilder;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -22,36 +31,67 @@ public class GraphCreator {
 		// sentiment average (all tweets)
 		cat.addSeries("global average", dates, sentScores);
 		new SwingWrapper(cat).displayChart();
+		try {
+			BitmapEncoder.saveBitmap(cat, "./AverageSentiment", BitmapFormat.PNG);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void displayHashtagAverage(double[] dates, List<double[]> sentScores) {
-		// XYSeries
 		XYChart chart = new XYChartBuilder().width(600).height(500).title("average Sentiment per day (by #)")
 				.xAxisTitle("Day").yAxisTitle("Sentiment").build();
 		// Sentiment average (for each #)
-		chart.addSeries("#capitolriot", dates, sentScores.get(0));
-		chart.addSeries("#capitolriots", dates, sentScores.get(1));
-		chart.addSeries("#CoupAttempt", dates, sentScores.get(2));
-		chart.addSeries("#TrumpCoupAttempt", dates, sentScores.get(3));
-		chart.addSeries("#capitolbreach", dates, sentScores.get(4));
-		chart.addSeries("#AnatomyOfCapitolAttack", dates, sentScores.get(5));
-		new SwingWrapper(chart).displayChart();
+		chart.addSeries("#AnatomyOfCapitolAttack", dates, sentScores.get(0));
+		chart.addSeries("#capitolbreach", dates, sentScores.get(1));
+		chart.addSeries("#capitolriot", dates, sentScores.get(2));
+		chart.addSeries("#capitolriots", dates, sentScores.get(3));
+		chart.addSeries("#CoupAttempt", dates, sentScores.get(4));
+		chart.addSeries("#TrumpCoupAttempt", dates, sentScores.get(5));
+		new SwingWrapper(chart).displayChart();try {
+			BitmapEncoder.saveBitmap(chart, "./HashtagAverage", BitmapFormat.PNG);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void displayTweetsPerHashtag(int[] intdates, List<int[]> tweetCounts) {
-		
+
 		XYChart chart = new XYChartBuilder().width(600).height(400).title("Tweets per day (by #)").xAxisTitle("Day")
 				.yAxisTitle("Tweetcount").build();
-		// Customize Chart
+		// AreaChart
 		chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Area);
 
 		// Series
-		chart.addSeries("#capitolriot", intdates, tweetCounts.get(0));
-		chart.addSeries("#capitolriots", intdates, tweetCounts.get(1));
-		chart.addSeries("#CoupAttempt", intdates, tweetCounts.get(2));
-		chart.addSeries("#TrumpCoupAttempt", intdates, tweetCounts.get(3));
-		chart.addSeries("#capitolbreach", intdates, tweetCounts.get(4));
-		chart.addSeries("#AnatomyOfCapitolAttack", intdates, tweetCounts.get(5));
+		chart.addSeries("#AnatomyOfCapitolAttack", intdates, tweetCounts.get(0));
+		chart.addSeries("#capitolbreach", intdates, tweetCounts.get(1));
+		chart.addSeries("#capitolriot", intdates, tweetCounts.get(2));
+		chart.addSeries("#capitolriots", intdates, tweetCounts.get(3));
+		chart.addSeries("#CoupAttempt", intdates, tweetCounts.get(4));
+		chart.addSeries("#TrumpCoupAttempt", intdates, tweetCounts.get(5));
 		new SwingWrapper(chart).displayChart();
+		try {
+			BitmapEncoder.saveBitmap(chart, "./TweetsPerHashtag", BitmapFormat.PNG);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void displayHeatMap(int[] intdates, int[][] tweetsPerDay) {
+		int[] hashtags = {1,2,3,4,5,6};
+		HeatMapChart heat = new HeatMapChartBuilder().width(600).height(500).title("FirstBubbleChart")
+				.yAxisTitle("Time").yAxisTitle("Sentiment").build();
+		heat.addSeries("Heat", intdates, hashtags, tweetsPerDay);
+		heat.getStyler().setShowValue(true);
+		new SwingWrapper(heat).displayChart();
+		try {
+			BitmapEncoder.saveBitmap(heat, "./TweecountHeatmap", BitmapFormat.PNG);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
