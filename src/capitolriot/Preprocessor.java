@@ -111,9 +111,6 @@ public class Preprocessor {
 
 		return scores;
 	}
-	
-	
-	
 	public int[][] tweetPerHashtagPerDayArray(String directoryPath) {
 		/**Calculates number of tweets per hashtag per day. 
 		 * Returns an array of int arrays, each array for one day, every int for an amount of tweets.
@@ -141,23 +138,14 @@ public class Preprocessor {
 				//count number of tweets
 				scores[date-6][fileCounter] += 1;
 			}
-			
 			fileCounter++;
 		}	
 		
 		//print results
 		for (int[] i : scores) Arrays.toString(i);
 			//for (int j : i) System.out.println(j);
-		
-		
-
 		return scores;
 	}
-	
-	
-	
-	
-	
 	
 	
 	public int[] tweetPerDay() {

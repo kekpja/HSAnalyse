@@ -1,4 +1,5 @@
 package capitolriot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class CapitolRiotMain {
 	static String path = "C:\\Users\\solemn\\Documents\\UNI\\JAVA\\wise2021\\SenScore_total.json";
 
 	// TODO replace with path to local directory containing files with SenScores
-	static String directoryPath = "D:/ASM_Data/SenScore";
+	static String directoryPath = "C:\\Users\\solemn\\Documents\\UNI\\JAVA\\wise2021\\sentscores";
 
 	public static void main(String[] args) {
 		GraphCreator graphy = new GraphCreator();
@@ -24,7 +25,7 @@ public class CapitolRiotMain {
 				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
 				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
 				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, };
-		//display HeatMap (tweetcount for all hashtags)
+		// display HeatMap (tweetcount for all hashtags)
 		graphy.displayHeatMap(intdates, pre.tweetPerHashtagPerDayArray(directoryPath));
 
 		// display average sentiments for all hashtags

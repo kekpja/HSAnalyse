@@ -1,5 +1,6 @@
 package capitolriot;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 
@@ -82,10 +83,12 @@ public class GraphCreator {
 
 	public void displayHeatMap(int[] intdates, int[][] tweetsPerDay) {
 		int[] hashtags = {1,2,3,4,5,6};
-		HeatMapChart heat = new HeatMapChartBuilder().width(600).height(500).title("FirstBubbleChart")
-				.yAxisTitle("Time").yAxisTitle("Sentiment").build();
+		Color[] farben = {Color.white, Color.yellow, Color.orange, Color.red};
+		HeatMapChart heat = new HeatMapChartBuilder().width(600).height(500).title("Tweets per Day (by #)")
+				.yAxisTitle("Days").yAxisTitle("Hashtags").build();
 		heat.addSeries("Heat", intdates, hashtags, tweetsPerDay);
 		heat.getStyler().setShowValue(true);
+		heat.getStyler().setRangeColors(farben);
 		new SwingWrapper(heat).displayChart();
 		try {
 			BitmapEncoder.saveBitmap(heat, "./TweecountHeatmap", BitmapFormat.PNG);

@@ -1,8 +1,6 @@
 package capitolriot;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
