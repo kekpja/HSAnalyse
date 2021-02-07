@@ -14,11 +14,15 @@ public class CapitolRiotMain {
 	public static void main(String[] args) {
 		GraphCreator graphy = new GraphCreator();
 		Preprocessor pre = new Preprocessor();
+		RangeAnalyzer ra = new RangeAnalyzer();
 		double[] dates = { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 };
 		int[] intdates = { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 };
 		List<double[]> singlesents = new ArrayList<double[]>();
 		List<int[]> tweetcounts = new ArrayList<int[]>();
 
+		ra.printContentOfMostLikedTweets(40, path);
+		ra.printContentOfMostRetweetedTweets(40, path);
+		ra.printFrequencyMapLikes(1000, path);
 		// Create test Array for HeatMap (6 values in each array, dates.lenght arrays in
 		// test)
 		int[][] test = { { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
