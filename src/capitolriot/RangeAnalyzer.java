@@ -186,7 +186,7 @@ public class RangeAnalyzer {
 			//calculate max number
 			for (Object x : data) {
 				JSONObject tweet = (JSONObject) x;
-				int retweetCount = Integer.parseInt(tweet.get("likeCount").toString());
+				int retweetCount = Integer.parseInt(tweet.get("retweetCount").toString());
 				if (retweetCount > highestRTCount) {
 					highestRTCount = retweetCount;
 					maxTweet = tweet;
