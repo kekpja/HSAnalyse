@@ -45,5 +45,4 @@ public class CapitolRiotMain {
 		graphy.displayTweetsPerHashtag(intdates, tweetcounts);
 
 	}
-
 }
