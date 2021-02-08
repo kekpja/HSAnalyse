@@ -20,29 +20,25 @@ public class CapitolRiotMain {
 		List<double[]> singlesents = new ArrayList<double[]>();
 		List<int[]> tweetcounts = new ArrayList<int[]>();
 
-		ra.printContentOfMostLikedTweets(40, path);
-		ra.printContentOfMostRetweetedTweets(40, path);
-		ra.printFrequencyMapLikes(1000, path);
-		// Create test Array for HeatMap (6 values in each array, dates.lenght arrays in
-		// test)
-		int[][] test = { { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
-				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
-				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 },
-				{ 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, { 1, 2, 3, 4, 5, 6 }, };
+		// ra.printContentOfMostLikedTweets(40, path);
+		// ra.printContentOfMostRetweetedTweets(40, path);
+		//ra.printFrequencyMapLikes(1000, path);
+		 ra.getDictionaryTopRetweetcount(1000, path);
+
 		// display HeatMap (tweetcount for all hashtags)
-		graphy.displayHeatMap(intdates, pre.tweetPerHashtagPerDayArray(directoryPath));
+		// graphy.displayHeatMap(intdates, pre.tweetPerHashtagPerDayArray(directoryPath));
 
 		// display average sentiments for all hashtags
-		double[] sents = pre.avgSentimentDay(path);
-		graphy.displayAverageSentiment(dates, sents);
+		// double[] sents = pre.avgSentimentDay(path);
+		//graphy.displayAverageSentiment(dates, sents);
 
 		// display average sentiments for each hashtag
-		singlesents = pre.avgSenPerHashtagPerDay(directoryPath);
-		graphy.displayHashtagAverage(dates, singlesents);
+		//singlesents = pre.avgSenPerHashtagPerDay(directoryPath);
+		//graphy.displayHashtagAverage(dates, singlesents);
 
 		// displays tweetcount for each day for one hashtag
-		tweetcounts = pre.tweetPerHashtagPerDay(directoryPath);
-		graphy.displayTweetsPerHashtag(intdates, tweetcounts);
+		// tweetcounts = pre.tweetPerHashtagPerDay(directoryPath);
+		// graphy.displayTweetsPerHashtag(intdates, tweetcounts);
 
 	}
 }
